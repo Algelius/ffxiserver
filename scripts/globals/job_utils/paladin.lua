@@ -71,7 +71,7 @@ xi.job_utils.paladin.useChivalry = function(player, target, ability)
 end
 
 xi.job_utils.paladin.useCover = function(player, target, ability)
-    local baseDuration = 15
+    local baseDuration = 60
     local bonusTime    = utils.clamp(math.floor((player:getStat(xi.mod.VIT) + player:getStat(xi.mod.MND) - target:getStat(xi.mod.VIT) * 2) / 4), 0, 15)
     local jpValue      = player:getJobPointLevel(xi.jp.COVER_DURATION)
     local duration     = baseDuration + bonusTime + player:getMerit(xi.merit.COVER_EFFECT_LENGTH) + player:getMod(xi.mod.COVER_DURATION) + jpValue
@@ -93,7 +93,7 @@ end
 xi.job_utils.paladin.useFealty = function(player, target, ability)
     local merits    = player:getMerit(xi.merit.FEALTY) - 5
     local enhFealty = (player:getMerit(xi.merit.FEALTY) / 5) * player:getMod(xi.mod.ENHANCES_FEALTY)
-    local duration  = 60 + merits + enhFealty
+    local duration  = 120 + merits + enhFealty
 
     player:addStatusEffect(xi.effect.FEALTY, 1, 0, duration)
 
@@ -106,7 +106,7 @@ xi.job_utils.paladin.useHolyCircle = function(player, target, ability)
     -- https://www.bg-wiki.com/ffxi/Holy_Circle
     -- Main (PLD) job gives a unique 15% damage bonus against undead, 15% damage resistance from undead, and likely +15% Undead Killer.
     -- When subbed, gives 5% of these bonuses.
-    local duration = 180 + player:getMod(xi.mod.HOLY_CIRCLE_DURATION)
+    local duration = 300 + player:getMod(xi.mod.HOLY_CIRCLE_DURATION)
     local power    = 15
 
     if player:getMainJob() ~= xi.job.PLD then
@@ -127,11 +127,15 @@ xi.job_utils.paladin.useIntervene = function(player, target, ability)
     local damage     = math.floor(player:getMainLvl() * 3.36)
 
     if shieldSize == 2 then
-        damage = 13 + damage
+        damage = 130 + damage
     elseif shieldSize == 3 then
-        damage = 40 + damage
+        damage = 400 + damage
     elseif shieldSize == 4 then
-        damage = 67 + damage
+        damage = 670 + damage
+    elseif shieldSize == 5 then
+        damage = 940 + damage
+    elseif shieldSize == 6 then
+        damage = 940 + damage
     end
 
     damage = damage * jpValue
@@ -142,7 +146,7 @@ xi.job_utils.paladin.useIntervene = function(player, target, ability)
 end
 
 xi.job_utils.paladin.useInvincible = function(player, target, ability)
-    player:addStatusEffect(xi.effect.INVINCIBLE, 1, 0, 30)
+    player:addStatusEffect(xi.effect.INVINCIBLE, 1, 0, 180)
 
     return xi.effect.INVINCIBLE
 end
@@ -157,7 +161,7 @@ xi.job_utils.paladin.usePalisade = function(player, target, ability)
     local jpValue = player:getJobPointLevel(xi.jp.PALISADE_EFFECT)
     local power   = 30 + jpValue
 
-    player:addStatusEffect(xi.effect.PALISADE, power, 0, 60)
+    player:addStatusEffect(xi.effect.PALISADE, power, 0, 120)
 
     return xi.effect.PALISADE
 end
@@ -177,7 +181,7 @@ xi.job_utils.paladin.useSentinel = function(player, target, ability)
     local guardian    = player:getMerit(xi.merit.GUARDIAN)
     local enhGuardian = player:getMod(xi.mod.ENHANCES_GUARDIAN) * (guardian / 19)
     local jpValue     = player:getJobPointLevel(xi.jp.SENTINEL_EFFECT)
-    local duration    = 30 + enhGuardian
+    local duration    = 60 + enhGuardian
 
     -- Sent as positive power because UINTs, man.
     player:addStatusEffect(xi.effect.SENTINEL, power, 3, duration, 0, guardian + jpValue)
@@ -197,14 +201,18 @@ xi.job_utils.paladin.useShieldBash = function(player, target, ability)
     local shieldSize = player:getShieldSize()
     local jpValue    = player:getJobPointLevel(xi.jp.SHIELD_BASH_EFFECT)
     local damage     = math.floor(player:getMainLvl() * 0.273)
-    local chance     = 90
+    local chance     = 100
 
     if shieldSize == 2 then
-        damage = 13 + damage
+        damage = 130 + damage
     elseif shieldSize == 3 then
-        damage = 40 + damage
+        damage = 400 + damage
     elseif shieldSize == 4 then
-        damage = 67 + damage
+        damage = 670 + damage
+    elseif shieldSize == 5 then
+        damage = 940 + damage
+    elseif shieldSize == 6 then
+        damage = 980 + damage
     end
 
     -- Main job factors
