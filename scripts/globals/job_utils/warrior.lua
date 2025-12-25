@@ -34,7 +34,7 @@ end
 xi.job_utils.warrior.useAggressor = function(player, target, ability)
     local merits = player:getMerit(xi.merit.AGGRESSIVE_AIM)
 
-    player:addStatusEffect(xi.effect.AGGRESSOR, merits, 0, 180 + player:getMod(xi.mod.AGGRESSOR_DURATION))
+    player:addStatusEffect(xi.effect.AGGRESSOR, merits, 0, 255 + player:getMod(xi.mod.AGGRESSOR_DURATION))
 
     return xi.effect.AGGRESSOR
 end
@@ -46,7 +46,7 @@ xi.job_utils.warrior.useBerserk = function(player, target, ability)
 
     -- Get Power and duration.
     local power    = 25 + player:getMod(xi.mod.BERSERK_POTENCY) + utils.clamp(levelScale, 0, 10)
-    local duration = 180 + player:getMod(xi.mod.BERSERK_DURATION)
+    local duration = 255 + player:getMod(xi.mod.BERSERK_DURATION)
 
     player:addStatusEffect(xi.effect.BERSERK, power, 0, duration)
 
@@ -87,7 +87,7 @@ xi.job_utils.warrior.useDefender = function(player, target, ability)
 end
 
 xi.job_utils.warrior.useMightyStrikes = function(player, target, ability)
-    player:addStatusEffect(xi.effect.MIGHTY_STRIKES, 1, 0, 45)
+    player:addStatusEffect(xi.effect.MIGHTY_STRIKES, 1, 0, 180)
 
     return xi.effect.MIGHTY_STRIKES
 end
