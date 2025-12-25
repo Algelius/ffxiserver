@@ -72,11 +72,11 @@ xi.combat.physical.pDifWeaponCapTable =
 
 local shieldSizeToBlockRateTable =
 {
-    [1] =  55, -- Buckler
-    [2] =  40, -- Round
-    [3] =  45, -- Kite
-    [4] =  30, -- Tower
-    [5] =  50, -- Aegis and Srivatsa
+    [1] = 85, -- Buckler
+    [2] = 80, -- Round
+    [3] = 75, -- Kite
+    [4] = 70, -- Tower
+    [5] = 100, -- Aegis and Srivatsa
     [6] = 100, -- Ochain  https://www.bg-wiki.com/ffxi/Category:Shields
 }
 
