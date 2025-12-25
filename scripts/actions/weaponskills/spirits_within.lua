@@ -34,26 +34,71 @@ weaponskillObject.onUseWeaponSkill = function(player, target, wsID, tp, primary,
 
     local playerHP = player:getHP()
     local wsc = 0
-    -- Damage calculations based on https://www.bg-wiki.com/index.php?title=Spirits_Within&oldid=269806
-    if tp == 3000 then
-        wsc = math.floor(playerHP * 120 / 256)
-    elseif tp >= 2000 then
-        wsc = math.floor(playerHP * (math.floor(0.072 * tp) - 96) / 256)
-    elseif tp >= 1000 then
-        wsc = math.floor(playerHP * (math.floor(0.016 * tp) + 16) / 256)
-    end
-
-    if xi.settings.main.USE_ADOULIN_WEAPON_SKILL_CHANGES then
-        -- Damage calculations changed based on: http://www.bg-wiki.com/bg/Spirits_Within http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6142188&viewfull=1#post6142188
+    if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
         if tp == 3000 then
-            wsc = playerHP
+            wsc = math.floor(playerHP * 3)
+        elseif tp >= 2900 then
+            wsc = math.floor(playerHP * 2.9)
+        elseif tp >= 2800 then
+            wsc = math.floor(playerHP * 2.8)
+        elseif tp >= 2700 then
+            wsc = math.floor(playerHP * 2.7)
+        elseif tp >= 2600 then
+            wsc = math.floor(playerHP * 2.6)
+        elseif tp >= 2500 then
+            wsc = math.floor(playerHP * 2.5)
+        elseif tp >= 2400 then
+            wsc = math.floor(playerHP * 2.4)
+        elseif tp >= 2300 then
+            wsc = math.floor(playerHP * 2.3)
+        elseif tp >= 2200 then
+            wsc = math.floor(playerHP * 2.2)
+        elseif tp >= 2100 then
+            wsc = math.floor(playerHP * 2.1)
         elseif tp >= 2000 then
-            wsc = math.floor(playerHP * .5)
+            wsc = math.floor(playerHP * 2)
+        elseif tp >= 1900 then
+            wsc = math.floor(playerHP * 1.9)
+        elseif tp >= 1800 then
+            wsc = math.floor(playerHP * 1.8)
+        elseif tp >= 1700 then
+            wsc = math.floor(playerHP * 1.7)
+        elseif tp >= 1600 then
+            wsc = math.floor(playerHP * 1.6)
+        elseif tp >= 1500 then
+            wsc = math.floor(playerHP * 1.5)
+        elseif tp >= 1400 then
+            wsc = math.floor(playerHP * 1.4)
+        elseif tp >= 1300 then
+            wsc = math.floor(playerHP * 1.3)
+        elseif tp >= 1200 then
+            wsc = math.floor(playerHP * 1.2)
+        elseif tp >= 1100 then
+            wsc = math.floor(playerHP * 1.1)
         elseif tp >= 1000 then
-            wsc = math.floor(playerHP * .125)
+            wsc = math.floor(playerHP)
+        end
+    else
+        -- Damage calculations based on https://www.bg-wiki.com/index.php?title=Spirits_Within&oldid=269806
+        if tp == 3000 then
+            wsc = math.floor(playerHP * 120 / 256)
+        elseif tp >= 2000 then
+            wsc = math.floor(playerHP * (math.floor(0.072 * tp) - 96) / 256)
+        elseif tp >= 1000 then
+            wsc = math.floor(playerHP * (math.floor(0.016 * tp) + 16) / 256)
+        end
+    
+        if xi.settings.main.USE_ADOULIN_WEAPON_SKILL_CHANGES then
+            -- Damage calculations changed based on: http://www.bg-wiki.com/bg/Spirits_Within http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6142188&viewfull=1#post6142188
+            if tp == 3000 then
+                wsc = playerHP
+            elseif tp >= 2000 then
+                wsc = math.floor(playerHP * .5)
+            elseif tp >= 1000 then
+                wsc = math.floor(playerHP * .125)
+            end
         end
     end
-
     local damage = wsc
     damage = math.floor(damage * xi.spells.damage.calculateDamageAdjustment(target, false, false, false, true))
     damage = math.floor(damage * xi.spells.damage.calculateAbsorption(target, xi.element.NONE, false))
