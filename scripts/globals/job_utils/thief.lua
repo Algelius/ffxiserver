@@ -258,7 +258,7 @@ xi.job_utils.thief.useFeint = function(player, target, ability)
 end
 
 xi.job_utils.thief.useFlee = function(player, target, ability)
-    local duration = 30 + player:getMod(xi.mod.FLEE_DURATION)
+    local duration = 120 + player:getMod(xi.mod.FLEE_DURATION)
 
     -- TODO: Flee will not override all types of weight effect. Find out which aren't overriden.
     if player:hasStatusEffect(xi.effect.WEIGHT) then
@@ -390,7 +390,7 @@ xi.job_utils.thief.useMug = function(player, target, ability, action)
 end
 
 xi.job_utils.thief.usePerfectDodge = function(player, target, ability)
-    local duration = 30 + player:getMod(xi.mod.PERFECT_DODGE)
+    local duration = 180 + player:getMod(xi.mod.PERFECT_DODGE)
 
     player:addStatusEffect(xi.effect.PERFECT_DODGE, 1, 0, duration)
 
@@ -407,7 +407,7 @@ xi.job_utils.thief.useSteal = function(player, target, ability, action)
     local thfLevel    = utils.getActiveJobLevel(player, xi.job.THF)
     local stolen      = action:getParam(target:getID())
     local stealMod    = player:getMod(xi.mod.STEAL)
-    local stealChance = 50 + stealMod * 2 + thfLevel - target:getMainLvl()
+    local stealChance = 90 + stealMod * 2 + thfLevel - target:getMainLvl()
 
     if stolen == 0 then
         stolen = target:getStealItem()
