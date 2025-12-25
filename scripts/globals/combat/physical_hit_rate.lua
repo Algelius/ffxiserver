@@ -49,19 +49,7 @@ end
 ---@param slot xi.attackAnimation
 ---@return number
 xi.combat.physicalHitRate.getPhysicalHitRateCap = function(attacker, slot)
-    if attacker:isPet() then
-        return 0.99
-    elseif attacker:isPC() then
-        if attacker:isUsingH2H() then -- Kicks aren't explicitly listed as 99%, TODO: needs verification
-            return 0.99
-        elseif attacker:isWeaponTwoHanded() or slot >= xi.attackAnimation.LEFT_ATTACK then -- 1h offhand, ranged
-            return 0.95
-        end
-
-        return 0.99 -- 1h mainhand
-    end
-
-    return 0.95 -- mobs, charmed pets. -- Do trusts have a 99% or 95% acc cap?
+    return 1.0 -- 100% hit cap.
 end
 
 ---@param attacker CBaseEntity
@@ -214,7 +202,7 @@ xi.combat.physicalHitRate.getRangedHitRate = function(attacker, target, bonus, i
     local hitrate = accuracyAndEvasionToHitRate(attacker, target, acc, eva)
 
     -- Apply hitrate caps
-    hitrate = utils.clamp(hitrate, 0.05, 0.95)
+    hitrate = utils.clamp(hitrate, 0.05, 1.0)
 
     return hitrate
 end
