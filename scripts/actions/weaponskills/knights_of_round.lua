@@ -18,19 +18,29 @@ local weaponskillObject = {}
 
 weaponskillObject.onUseWeaponSkill = function(player, target, wsID, tp, primary, action, taChar)
     local params = {}
-    params.numHits = 1
-    params.ftpMod = { 3.0, 3.0, 3.0 }
-    params.str_wsc = 0.4 params.mnd_wsc = 0.4
-
-    if xi.settings.main.USE_ADOULIN_WEAPON_SKILL_CHANGES then
-        params.ftpMod = { 5.0, 5.0, 5.0 }
+    if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
+        params.numHits = 1
+        params.ftpMod = { 10.0, 11.5, 14.0 }
+        params.str_wsc = 0.8
+    else
+        params.numHits = 1
+        params.ftpMod = { 3.0, 3.0, 3.0 }
+        params.str_wsc = 0.4 params.mnd_wsc = 0.4
+    
+        if xi.settings.main.USE_ADOULIN_WEAPON_SKILL_CHANGES then
+            params.ftpMod = { 5.0, 5.0, 5.0 }
+        end
     end
-
     -- Apply aftermath
     xi.aftermath.addStatusEffect(player, tp, xi.slot.MAIN, xi.aftermath.type.RELIC)
 
     local damage, criticalHit, tpHits, extraHits = xi.weaponskills.doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
-
+    
+    if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
+        local drain = math.floor(damage * 0.5)
+        player:addHP(drain)    
+    end
+    
     return tpHits, extraHits, criticalHit, damage
 end
 
