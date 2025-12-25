@@ -17,19 +17,30 @@ local weaponskillObject = {}
 weaponskillObject.onUseWeaponSkill = function(player, target, wsID, tp, primary, action, taChar)
     local params = {}
     params.numHits = 6
-    params.ftpMod = { 1.0, 1.0, 1.0 }
-    params.str_wsc = 0.2
-    params.mnd_wsc = 0.2
-    params.critVaries = { 0.1, 0.3, 0.5 }
-
-    if xi.settings.main.USE_ADOULIN_WEAPON_SKILL_CHANGES then
-        params.ftpMod = { 1.125, 1.125, 1.125 }
-        params.str_wsc = 0.3 params.mnd_wsc = 0.3
+    if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
+        params.ftpMod = { 2.0, 3.0, 4.0 }
+        params.str_wsc = 0.6
+        params.mnd_wsc = 0.6
+        params.critVaries = { 0.1, 0.3, 0.5 }
         params.multiHitfTP = true
+    else
+        params.ftpMod = { 1.0, 1.0, 1.0 }
+        params.str_wsc = 0.2
+        params.mnd_wsc = 0.2
+        params.critVaries = { 0.1, 0.3, 0.5 }
+    
+        if xi.settings.main.USE_ADOULIN_WEAPON_SKILL_CHANGES then
+            params.ftpMod = { 1.125, 1.125, 1.125 }
+            params.str_wsc = 0.3 params.mnd_wsc = 0.3
+            params.multiHitfTP = true
+        end
     end
-
     local damage, criticalHit, tpHits, extraHits = xi.weaponskills.doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
-
+    if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
+        local drain = math.floor(damage * 0.5)
+        player:addHP(drain)    
+        player:addMP(drain)
+    end
     return tpHits, extraHits, criticalHit, damage
 end
 
