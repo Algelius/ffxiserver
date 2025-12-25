@@ -34,18 +34,24 @@ weaponskillObject.onUseWeaponSkill = function(player, target, wsID, tp, primary,
         end
     end
     -- Apply aftermath
-    xi.aftermath.addStatusEffect(player, tp, xi.slot.MAIN, xi.aftermath.type.RELIC)
-
+    if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
+        xi.aftermath.addStatusEffect(player, tp, xi.slot.MAIN, xi.aftermath.type.MYTHIC)
+    else
+        xi.aftermath.addStatusEffect(player, tp, xi.slot.MAIN, xi.aftermath.type.RELIC)
+    end
+    
     local damage, criticalHit, tpHits, extraHits = xi.weaponskills.doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
-
-    if not target:isUndead() then
+    if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
         local drain = math.floor(damage * 0.4)
-        player:addHP(drain)
-        if xi.settings.main.USE_MODDED_WEAPON_SKILLS then
-            player:addMP(drain)
+        player:addHP(drain)    
+        player:addMP(drain)
+    else
+        if not target:isUndead() then
+            local drain = math.floor(damage * 0.4)
+            player:addHP(drain)
+            
         end
     end
-
     return tpHits, extraHits, criticalHit, damage
 end
 
