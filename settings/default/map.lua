@@ -53,18 +53,18 @@ xi.settings.map =
     -- Max open listings per player, 0 = no limit. (Default 7)
     -- Note = Settings over 7 may need client-side plugin to work under all circumstances.
     -- If this is the case, consider using the ah_pagination module (which supports setting AH_LIST_LIMIT to 0 or >7).
-    AH_LIST_LIMIT = 7,
+    AH_LIST_LIMIT = 0,
 
     -- The total enmity cap for a given entity on the enmity table.
     -- 30,000 is believed to be approximately current retail cap.
     -- This directly affects a tank's ability to hold enmity over time.
     -- The lower the value, the faster damage dealers will reach the cap and the mob will bounce.
-    ENMITY_CAP = 30000,
+    ENMITY_CAP = 3000000,
 
     -- Misc EXP related settings
-    EXP_RATE                = 1.0,
-    EXP_LOSS_RATE           = 1.0,
-    EXP_PARTY_GAP_PENALTIES = true,
+    EXP_RATE                = 3.0,
+    EXP_LOSS_RATE           = 0.0,
+    EXP_PARTY_GAP_PENALTIES = false,
 
     -- A party member's experience points are nullified if the level difference with the highest-level party member exceeds this value.
     -- When set to 0, there is no nullification of EXP regardless of how wide the gap is between party members.
@@ -72,7 +72,7 @@ xi.settings.map =
     EXP_PARTY_GAP_NO_EXP = 0,
 
     -- Capacity Point Settings
-    CAPACITY_RATE = 1.0,
+    CAPACITY_RATE = 3.0,
 
     -- Determines Vana'diel time epoch (886/1/1 Firesday)
     -- current timestamp - vanadiel_time_epoch = vana'diel time
@@ -81,10 +81,10 @@ xi.settings.map =
     VANADIEL_TIME_EPOCH = 0,
 
     -- For old fame calculation use .25
-    FAME_MULTIPLIER = 1.00,
+    FAME_MULTIPLIER = 3.00,
 
     -- Percentage of experience normally lost to keep upon death. 0 means full loss, where 1 means no loss.
-    EXP_RETAIN = 0,
+    EXP_RETAIN = 1,
 
     -- Minimum level at which experience points can be lost
     EXP_LOSS_LEVEL = 31,
@@ -100,16 +100,16 @@ xi.settings.map =
     DISABLE_GEAR_SCALING = false,
 
     -- Disables Treasure Hunter procs (Era behavior wants this true)
-    DISABLE_TREASURE_HUNTER_PROCS = false,
+    DISABLE_TREASURE_HUNTER_PROCS = true,
 
     -- Enable auto attack damage calculations in Lua
     ENABLE_AUTO_ATTACK_LUA = false,
 
     -- Weaponskill point base (before skillchain) for breaking latent - whole numbers only. retail is 5.
-    WS_POINTS_BASE = 5,
+    WS_POINTS_BASE = 20,
 
     -- Weaponskill points per skillchain level - whole numbers only, retail is 2
-    WS_POINTS_SKILLCHAIN = 2,
+    WS_POINTS_SKILLCHAIN = 20,
 
     -- Enable/disable jobs other than BST and RNG having widescan
     ALL_JOBS_WIDESCAN = true,
@@ -132,12 +132,12 @@ xi.settings.map =
     MOB_RUN_SPEED_MULTIPLIER = 2.5,
 
     -- Allows you to manipulate the constant multiplier in the skill-up rate formulas, having a potent effect on skill-up rates.
-    SKILLUP_CHANCE_MULTIPLIER = 1.0,
-    CRAFT_CHANCE_MULTIPLIER   = 1.0,
+    SKILLUP_CHANCE_MULTIPLIER = 3.0,
+    CRAFT_CHANCE_MULTIPLIER   = 10.0,
 
     -- Multiplier for skillup amounts. Using anything above 1 will break the 0.5 cap, the cap will become 0.9 (For maximum, set to 5)
     SKILLUP_AMOUNT_MULTIPLIER = 1,
-    CRAFT_AMOUNT_MULTIPLIER   = 1,
+    CRAFT_AMOUNT_MULTIPLIER   = 5,
 
     -- Gardening Factors. DO NOT change defaults without verifiable proof that your change IS how retail does it. Myths need to be optional.
     GARDEN_DAY_MATTERS       = false,
@@ -155,7 +155,7 @@ xi.settings.map =
     CRAFT_SPECIALIZATION_POINTS = 400,
 
     -- Multiplier applied to high quality chance
-    CRAFT_HQ_CHANCE_MULTIPLIER = 1.0,
+    CRAFT_HQ_CHANCE_MULTIPLIER = 10.0,
 
     -- Enable/disable all fishing, including quests. ENABLE AT YOUR OWN RISK.
     FISHING_ENABLE = false,
@@ -171,14 +171,14 @@ xi.settings.map =
 
     -- Adjust rate of TP gain for mobs, pets (includes charmed pets), fellows, trusts and players.
     -- Acts as a multiplier, so default is 1.
-    MOB_TP_MULTIPLIER    = 1.0,
+    MOB_TP_MULTIPLIER    = 0.25,
     PET_TP_MULTIPLIER    = 1.0,
     PLAYER_TP_MULTIPLIER = 1.0,
     TRUST_TP_MULTIPLIER  = 1.0,
     FELLOW_TP_MULTIPLIER = 1.0,
 
     -- Adjust max HP pool for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1.
-    NM_HP_MULTIPLIER        = 1.0,
+    NM_HP_MULTIPLIER        = 0.5,
     MOB_HP_MULTIPLIER       = 1.0,
     PLAYER_HP_MULTIPLIER    = 1.0,
     ALTER_EGO_HP_MULTIPLIER = 1.0,
@@ -203,8 +203,8 @@ xi.settings.map =
     INCLUDE_MOB_SJ = false,
 
     -- Adjust base stats (str/vit/etc.) for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1.
-    NM_STAT_MULTIPLIER        = 1.0,
-    MOB_STAT_MULTIPLIER       = 1.0,
+    NM_STAT_MULTIPLIER        = 0.75,
+    MOB_STAT_MULTIPLIER       = 0.75,
     PLAYER_STAT_MULTIPLIER    = 1.0,
     ALTER_EGO_STAT_MULTIPLIER = 1.0,
 
@@ -218,19 +218,19 @@ xi.settings.map =
     BLOOD_PACT_SHARED_TIMER = false,
 
     -- Adjust mob drop rate. Acts as a multiplier, so default is 1.
-    DROP_RATE_MULTIPLIER = 1.0,
+    DROP_RATE_MULTIPLIER = 5.0,
 
     -- Multiplier for gil naturally dropped by mobs. Does not apply to the bonus gil from all_mobs_gil_bonus. Default is 1.0.
-    MOB_GIL_MULTIPLIER = 1.0,
+    MOB_GIL_MULTIPLIER = 1000.0,
 
     -- All mobs drop this much extra gil per mob LV even if they normally drop zero.
-    ALL_MOBS_GIL_BONUS = 0,
+    ALL_MOBS_GIL_BONUS = 10,
 
     -- Maximum total bonus gil that can be dropped. Default 9999 gil.
-    MAX_GIL_BONUS = 9999,
+    MAX_GIL_BONUS = 999999,
 
     -- Allow mobs to walk back home instead of despawning
-    MOB_NO_DESPAWN = false,
+    MOB_NO_DESPAWN = true,
 
     -- Adds extra time to mob despawn in seconds. Base time is 25s, so a setting of 5 here would be a total of 30 seconds.
     MOB_ADDITIONAL_TIME_TO_DEAGGRO = 0,
@@ -253,10 +253,10 @@ xi.settings.map =
     -- Max allowed merits points players can hold
     -- 10 classic
     -- 30 abyssea
-    MAX_MERIT_POINTS = 30,
+    MAX_MERIT_POINTS = 9999,
 
     -- Minimum time between uses of yell command (in seconds).
-    YELL_COOLDOWN = 30,
+    YELL_COOLDOWN = 0,
 
     -- Prevent players from sending tells to hidden GMs. You will still receive them from other GMs.
     BLOCK_TELL_TO_HIDDEN_GM = false,
@@ -291,7 +291,7 @@ xi.settings.map =
     AUDIT_PLAYER_VENDOR = false,
 
     -- Seconds between healing ticks. Default is 10
-    HEALING_TICK_DELAY = 10,
+    HEALING_TICK_DELAY = 2,
 
     -- Enable/disable keeping jug pets through zoning
     KEEP_JUGPET_THROUGH_ZONING = false,
