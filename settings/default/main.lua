@@ -11,6 +11,7 @@ xi.settings = xi.settings or {}
 
 xi.settings.main =
 {
+    USE_MODDED_WEAPON_SKILLS = true,
     -- Server name (not longer than 15 characters)
     SERVER_NAME = "Vana'diel",
 
