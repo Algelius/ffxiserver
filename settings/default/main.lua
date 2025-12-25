@@ -12,17 +12,16 @@ xi.settings = xi.settings or {}
 xi.settings.main =
 {
     -- Server name (not longer than 15 characters)
-    SERVER_NAME = 'Nameless',
+    SERVER_NAME = "Vana'diel",
 
     SERVER_MESSAGE =
-        'Please visit https://github.com/LandSandBoat/server for the latest information on the project.\n' ..
-        'Thank you, and we hope you enjoy sailing the sands!',
+        "Welcome to Vana'diel!",
 
     -- Setting to lock content more accurately to the expansions defined below.
     -- This generally results in a more accurate presentation of your selected expansions,
     -- as well as a less confusing player experience for things that are disabled (things that are disabled are not loaded).
     -- This feature correlates to the content_tag column in the SQL files.
-    RESTRICT_CONTENT = 0,
+    RESTRICT_CONTENT = 1,
 
     -- Enable Expansion (1 = Enabled, 0 = Disabled)
     ENABLE_COP       = 1,
@@ -47,7 +46,7 @@ xi.settings.main =
 
     -- Daily points / Gobbie mystery box.
     ENABLE_DAILY_TALLY = 1,  -- Allows acquisition of daily points for gobbie mystery box.
-    DAILY_TALLY_AMOUNT = 10,
+    DAILY_TALLY_AMOUNT = 100,
     DAILY_TALLY_LIMIT  = 50000,
     GOBBIE_BOX_MIN_AGE = 0, -- Minimum character age in days before a character can sign up for Gobbie Mystery Box
 
